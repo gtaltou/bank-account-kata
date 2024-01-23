@@ -61,7 +61,8 @@ public class Amount {
     /**
      * @return the return value
      */
-    public Amount subtract() {
+    public Amount
+    subtract() {
         return newAmount(-input);
     }
 

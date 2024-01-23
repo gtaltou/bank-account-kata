@@ -30,6 +30,7 @@ public class Operation {
      * @return ; The return value
      */
     public Amount computeBalanceAfterOperation(Amount currentBalance) {
+
         return currentBalance.addUp(input);
     }
 

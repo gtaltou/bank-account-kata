@@ -1,6 +1,7 @@
 package com.bank.account;
 
 import com.bank.amount.Amount;
+import com.bank.error.InsufficientFundException;
 import com.bank.operation.Operation;
 import com.bank.statement.Statement;
 
@@ -22,7 +23,7 @@ public class Account {
      * @param input : The input value
      * @param date  : The input date
      */
-    public void computeDeposit(Amount input, Date date) {
+    public void computeDeposit(Amount input, Date date) throws InsufficientFundException {
         saveOperation(input, date);
     }
 
@@ -31,7 +32,8 @@ public class Account {
      * @param input : The input value
      * @param date   The input date
      */
-    public void computeWithdrawal(Amount input, Date date) {
+    public void computeWithdrawal(Amount input, Date date) throws InsufficientFundException {
+
         saveOperation(input.subtract(), date);
     }
 
@@ -48,10 +50,15 @@ public class Account {
      * @param input : The input value
      * @param date   : The input date
      */
-    private void saveOperation(Amount input, Date date) {
+    private void saveOperation(Amount input, Date date) throws InsufficientFundException {
         Operation operation = new Operation(input, date);
         Amount balanceAfterOperation = operation.computeBalanceAfterOperation(balance);
-        balance = balanceAfterOperation;
+
+        if(!balanceAfterOperation.isGreaterThan(Amount.newAmount(0)))
+        {throw new InsufficientFundException("Account not sufficiently provisionned : " );}
+       else {
+            balance = balanceAfterOperation;
+        }
         statement.appendOccurrenceContent(operation, balanceAfterOperation);
     }
 }

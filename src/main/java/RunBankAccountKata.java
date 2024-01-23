@@ -1,14 +1,16 @@
 import com.bank.account.Account;
 import com.bank.amount.Amount;
+import com.bank.error.InsufficientFundException;
 import com.bank.statement.Statement;
 
 import static com.bank.helpers.Helper.date;
 
 public class RunBankAccountKata {
-    public static void main(String[] args){
+    public static void main(String[] args) throws InsufficientFundException {
         Account account = new Account(new Statement());
 
-        account.computeDeposit(Amount.newAmount(3000), date("01/03/2023"));
+        account.computeDeposit(Amount.newAmount(
+                3000), date("01/03/2023"));
         account.computeDeposit(Amount.newAmount(4000), date("15/03/2023"));
         account.computeDeposit(Amount.newAmount(5000), date("20/03/2023"));
         account.computeDeposit(Amount.newAmount(1000), date("23/03/2023"));

@@ -28,9 +28,10 @@ public class AccountTest {
     }
 
     @Test public void
-    test_add_deposit_occurrence_to_statement() {
+    test_add_deposit_occurrence_to_statement() throws InsufficientFundException {
         Date depositDate = Helper.date("01/03/2023");
-        Amount depositAmount = Amount.newAmount(3000);        account.computeDeposit(depositAmount, depositDate);
+        Amount depositAmount = Amount.newAmount(3000);
+        account.computeDeposit(depositAmount, depositDate);
 
         verify(aStatement).appendOccurrenceContent(OperationHelper.aTransaction()
                         .with(depositDate)
