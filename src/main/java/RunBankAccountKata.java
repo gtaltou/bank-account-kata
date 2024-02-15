@@ -1,12 +1,11 @@
 import com.bank.account.Account;
 import com.bank.amount.Amount;
-import com.bank.error.InsufficientFundException;
 import com.bank.statement.Statement;
 
 import static com.bank.helpers.Helper.date;
 
 public class RunBankAccountKata {
-    public static void main(String[] args) throws InsufficientFundException {
+    public static void main(String[] args)  {
         Account account = new Account(new Statement());
 
         account.computeDeposit(Amount.newAmount(

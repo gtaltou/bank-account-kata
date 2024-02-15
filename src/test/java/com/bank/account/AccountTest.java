@@ -1,7 +1,6 @@
 package com.bank.account;
 
 import com.bank.amount.Amount;
-import com.bank.error.InsufficientFundException;
 import com.bank.helpers.Helper;
 import com.bank.operation.OperationHelper;
 import com.bank.statement.Statement;
@@ -28,7 +27,7 @@ public class AccountTest {
     }
 
     @Test public void
-    test_add_deposit_occurrence_to_statement() throws InsufficientFundException {
+    test_add_deposit_occurrence_to_statement() {
         Date depositDate = Helper.date("01/03/2023");
         Amount depositAmount = Amount.newAmount(3000);
         account.computeDeposit(depositAmount, depositDate);
@@ -40,7 +39,7 @@ public class AccountTest {
     }
 
     @Test public void
-    test_add_withdraw_occurrence_to_statement() throws InsufficientFundException {
+    test_add_withdraw_occurrence_to_statement() {
         Date withdrawalDate = Helper.date("25/03/2023");
         account.computeWithdrawal(Amount.newAmount(1000), withdrawalDate);
         verify(aStatement).appendOccurrenceContent(OperationHelper.aTransaction()
