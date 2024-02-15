@@ -54,11 +54,8 @@ public class Account {
         Operation operation = new Operation(input, date);
         Amount balanceAfterOperation = operation.computeBalanceAfterOperation(balance);
 
-        if(!balanceAfterOperation.isGreaterThan(Amount.newAmount(0)))
-        {throw new InsufficientFundException("Account not sufficiently provisionned : " );}
-       else {
             balance = balanceAfterOperation;
-        }
+
         statement.appendOccurrenceContent(operation, balanceAfterOperation);
     }
 }
